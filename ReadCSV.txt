@@ -1,0 +1,30 @@
+using System;
+using System.IO;
+
+namespace ReadCSV
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            int rowCount = 0;
+            StreamReader file = new StreamReader(@"C:\Users\joyar\Documents\GitHub\puzzles\csv-sample.csv");
+            string strBlock = file.ReadToEnd();
+
+            string[] rows = strBlock.Split(",");
+            for (int i = 0; i < rows.Length; i++)
+            {
+                if (rowCount == 0)
+                    rowCount++;
+                else if (rowCount > 0 && !rows[i].Contains(rowCount.ToString()))
+                {
+                    rowCount++;
+                }
+
+            }
+            Console.WriteLine("Total rows in the file = " + rowCount.ToString());
+            file.Close();
+            Console.ReadLine();
+        }
+    }
+}
